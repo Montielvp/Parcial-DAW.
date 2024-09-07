@@ -1,0 +1,21 @@
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="title">Título:</label>
+    <input id="title" formControlName="title" />
+    <div *ngIf="taskForm.get('title')?.invalid && taskForm.get('title')?.touched">
+      <small *ngIf="taskForm.get('title')?.hasError('required')">El título es obligatorio.</small>
+      <small *ngIf="taskForm.get('title')?.hasError('minlength')">El título debe tener al menos 3 caracteres.</small>
+    </div>
+  </div>
+
+  <div>
+    <label for="description">Descripción:</label>
+    <textarea id="description" formControlName="description"></textarea>
+    <div *ngIf="taskForm.get('description')?.invalid && taskForm.get('description')?.touched">
+      <small *ngIf="taskForm.get('description')?.hasError('required')">La descripción es obligatoria.</small>
+      <small *ngIf="taskForm.get('description')?.hasError('minlength')">La descripción debe tener al menos 10 caracteres.</small>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="taskForm.invalid">Agregar Tarea</button>
+</form>

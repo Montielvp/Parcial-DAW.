@@ -1,0 +1,16 @@
+<div *ngIf="tasks.length === 0">
+  <p>No hay tareas disponibles.</p>
+</div>
+
+<ul>
+  <li *ngFor="let task of tasks">
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    <p [style.color]="task.done ? 'green' : 'red'">
+      {{ task.done ? 'Completada' : 'Pendiente' }}
+    </p>
+    <button (click)="toggleDone(task)">
+      {{ task.done ? 'Marcar como Pendiente' : 'Marcar como Completada' }}
+    </button>
+  </li>
+</ul>
